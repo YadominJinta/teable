@@ -4,7 +4,8 @@ import { AudioPreview } from './audio/AudioPreview';
 import { FilePreviewContext } from './FilePreviewContext';
 import { getFileIcon } from './getFileIcon';
 import { ImagePreview } from './image/ImagePreview';
-import { isAudio, isImage, isVideo } from './utils';
+import { TextPreview } from './text/TextPreview';
+import { isAudio, isImage, isText, isVideo } from './utils';
 import { VideoPreview } from './video/VideoPreviw';
 
 interface IFilePreviewProps {
@@ -33,6 +34,10 @@ export const FilePreview = (props: IFilePreviewProps) => {
 
   if (isAudio(mimetype)) {
     return <AudioPreview {...currentFile} />;
+  }
+
+  if (isText(mimetype)) {
+    return <TextPreview {...currentFile} />;
   }
 
   return <FileIcon className={cn('max-w-max max-h-max w-40 h-40 ', className)} />;
